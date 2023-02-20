@@ -1,0 +1,124 @@
+### root
+
+GET http://127.0.0.1:8000/
+Accept: application/json
+
+### category list
+
+GET http://127.0.0.1:8000/category/
+Accept: application/json
+
+### category detail
+GET http://127.0.0.1:8000/category/1/
+Accept: application/json
+
+### category create
+POST http://127.0.0.1:8000/category/create/
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "test 3"
+}
+
+### category update
+PATCH http://127.0.0.1:8000/category/6/update/
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "test 2.2"
+}
+
+### category delete
+DELETE http://127.0.0.1:8000/category/6/delete/
+
+
+
+
+
+### ad list
+
+GET http://127.0.0.1:8000/ad/
+Accept: application/json
+
+### ad detail
+GET http://127.0.0.1:8000/ad/1/
+Accept: application/json
+
+### ad create
+POST http://127.0.0.1:8000/ad/create/
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "test",
+    "author_id": 1,
+    "price": 2500,
+    "description": "test desc",
+    "category_id": 1,
+    "is_published": true
+}
+
+
+### ad update
+PATCH http://127.0.0.1:8000/ad/21/update/
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Сибирская котята 2.0",
+    "author_id": 1,
+    "author": "Павел",
+    "price": 2500,
+    "description": "Продаю сибирских котят, возвраст 3 месяца.\nОчень милые и ручные.\nЛоточек знают на пятерку, кушают премиум корм.\nЖдут любящих и заботливых хояев. Больше фотографий отправлю в личку, цена указана за 1 котенка.",
+    "is_published": true,
+    "category_id": 1,
+    "image": ""
+}
+
+### ad delete
+DELETE http://127.0.0.1:8000/ad/18/delete/
+
+
+### user list
+
+GET http://127.0.0.1:8000/user/
+Accept: application/json
+
+### user detail
+GET http://127.0.0.1:8000/user/1/
+Accept: application/json
+
+### user create
+POST http://127.0.0.1:8000/user/create/
+Accept: application/json
+Content-Type: application/json
+
+{
+    "username": "test",
+    "password": "gZvptL",
+    "first_name": "test Павел",
+    "last_name": "test Никифоров",
+    "role": "member",
+    "age": 221,
+    "locations": ["Москва, м. Водный стадион"]
+}
+
+### user update
+PATCH http://127.0.0.1:8000/user/13/update/
+Accept: application/json
+Content-Type: application/json
+
+{
+    "username": "test2",
+    "password": "gZvptL2",
+    "first_name": "test2 Павел",
+    "last_name": "test2 Никифоров",
+    "role": "member",
+    "age": 22,
+    "locations": ["Москва, м. Водный стадион"]
+}
+
+### user delete
+DELETE http://127.0.0.1:8000/user/13/delete/

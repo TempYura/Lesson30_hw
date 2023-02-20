@@ -74,31 +74,24 @@ class AdDetailView(DetailView):
 @method_decorator(csrf_exempt, name='dispatch')
 class AdCreateView(CreateView):
     model = Ad
-    fields = ['name', 'author', 'price', 'description', 'is_published', 'category']
+    fields = ['name', 'author_id', 'price', 'description', 'is_published', 'category_id']
 
     def post(self, request, *args, **kwargs):
         ad_data = json.loads(request.body)
 
-        author = get_object_or_404(User, ad_data["author_id"])
-        category = get_object_or_404(Category, ad_data["category_id"])
-
-        ad_data['author'] = author
-        ad_data['category'] = category
-
         ad = Ad.objects.create(
             name=ad_data["name"],
-            author=author,
+            author_id=ad_data["author_id"],
             price=ad_data["price"],
             description=ad_data["description"],
             is_published=ad_data["is_published"],
-            category=category,
+            category_id=ad_data["category_id"],
         )
 
         response = {
             "id": ad.id,
             "name": ad.name,
             "author_id": ad.author_id,
-            "author": ad.author.first_name,
             "price": ad.price,
             "description": ad.description,
             "is_published": ad.is_published,
@@ -115,29 +108,28 @@ class AdUpdateView(UpdateView):
     fields = ['name', 'author', 'price', 'description', 'is_published', 'category']
 
     def patch(self, request, *args, **kwargs):
-        super().post(request, *args, **kwargs)
+        ad = self.get_object()
 
         ad_data = json.loads(request.body)
 
-        self.object.name = ad_data["name"]
-        self.object.price = ad_data["price"]
-        self.object.description = ad_data["description"]
+        ad.name = ad_data["name"]
+        ad.price = ad_data["price"]
+        ad.description = ad_data["description"]
+        ad.author_id = ad_data["author_id"]
+        ad.category_id = ad_data["category_id"]
+        ad.is_published = ad_data["is_published"]
 
-        self.object.author = get_object_or_404(User, ad_data["author_id"])
-        self.object.category = get_object_or_404(Category, ad_data["category_id"])
-
-        self.object.save()
+        ad.save()
 
         response = {
-            "id": self.object.id,
-            "name": self.object.name,
-            "author_id": self.object.author_id,
-            "author": self.object.author.first_name,
-            "price": self.object.price,
-            "description": self.object.description,
-            "is_published": self.object.is_published,
-            "category_id": self.object.category_id,
-            "image": self.object.image.url if self.object.image else None,
+            "id": ad.id,
+            "name": ad.name,
+            "price": ad.price,
+            "description": ad.description,
+            "is_published": ad.is_published,
+            "author_id": ad.author_id,
+            "category_id": ad.category_id,
+            "image": ad.image.url if ad.image else None,
         }
 
         return JsonResponse(response, safe=False)

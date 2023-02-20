@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
                 ('password', models.CharField(max_length=200)),
                 ('role', models.CharField(choices=[('admin', 'Админ'), ('moderator', 'Модератор'), ('member', 'Пользователь')], default='member', max_length=200)),
                 ('age', models.PositiveIntegerField()),
-                ('locations', models.ManyToManyField(to='users.location')),
+                ('location', models.ManyToManyField(to='users.location')),
             ],
             options={
                 'verbose_name': 'Пользователь',

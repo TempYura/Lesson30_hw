@@ -3,7 +3,7 @@ import json
 
 AD_MODEL = 'ads.ad'
 CATEGORY_MODEL = 'ads.category'
-LOCATION_MODEL = 'users.locations'
+LOCATION_MODEL = 'users.location'
 USER_MODEL = 'users.user'
 
 def convert_file(csv_file, json_file, model):
@@ -32,7 +32,8 @@ def convert_file(csv_file, json_file, model):
 
             if 'age' in row:
                 row["age"] = int(row["age"])
-                row["location_id"] = int(row["location_id"])
+                row["locations"] = [int(row["location_id"]),]
+                del row["location_id"]
 
 
             record["fields"] = row

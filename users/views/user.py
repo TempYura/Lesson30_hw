@@ -55,6 +55,7 @@ class UserDetailView(DetailView):
         response = {
             "id": user.id,
             "username": user.username,
+            "password": user.password,
             "first_name": user.first_name,
             "last_name": user.last_name,
             "role": user.role,
@@ -73,7 +74,14 @@ class UserCreateView(CreateView):
     def post(self, request, *args, **kwargs):
         user_data = json.loads(request.body)
 
-        user = User.objects.create(**user_data)
+        user = User.objects.create(
+            username=user_data["username"],
+            password=user_data["password"],
+            first_name=user_data["first_name"],
+            last_name=user_data["last_name"],
+            role=user_data["role"],
+            age=user_data["age"],
+        )
 
         for location_name in user_data["locations"]:
             location, _ = Location.objects.get_or_create(name=location_name)
@@ -82,6 +90,7 @@ class UserCreateView(CreateView):
         response = {
             "id": user.id,
             "username": user.username,
+            "password": user.password,
             "first_name": user.first_name,
             "last_name": user.last_name,
             "role": user.role,
@@ -116,13 +125,14 @@ class UserUpdateView(UpdateView):
         user.save()
 
         response = {
-            "id": self.object.id,
-            "username": self.object.username,
-            "first_name": self.object.first_name,
-            "last_name": self.object.last_name,
-            "role": self.object.role,
-            "age": self.object.age,
-            "locations": list(map(str, self.object.locations.all())),
+            "id": user.id,
+            "username": user.username,
+            "password": user.password,
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+            "role": user.role,
+            "age": user.age,
+            "locations": list(map(str, user.locations.all())),
         }
 
         return JsonResponse(response, safe=False)
