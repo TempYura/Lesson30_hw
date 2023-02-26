@@ -9,6 +9,7 @@ class Location(models.Model):
     class Meta:
         verbose_name = 'Место'
         verbose_name_plural = 'Места'
+        ordering = ["id"]
 
     def __str__(self):
         return self.name

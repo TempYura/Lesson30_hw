@@ -19,6 +19,9 @@ from django.urls import path, include
 from django.conf import settings
 
 from ads.views.root import root
+from users.urls.location import location_router
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +30,9 @@ urlpatterns = [
     path('category/', include('ads.urls.category')),
     path('user/', include('users.urls.user')),
 ]
+
+urlpatterns += location_router.urls
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

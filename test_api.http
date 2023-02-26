@@ -22,7 +22,7 @@ Content-Type: application/json
 }
 
 ### category update
-PATCH http://127.0.0.1:8000/category/6/update/
+PATCH http://127.0.0.1:8000/category/7/update/
 Accept: application/json
 Content-Type: application/json
 
@@ -31,54 +31,73 @@ Content-Type: application/json
 }
 
 ### category delete
-DELETE http://127.0.0.1:8000/category/6/delete/
+DELETE http://127.0.0.1:8000/category/7/delete/
 
 
 
 
 
 ### ad list
-
 GET http://127.0.0.1:8000/ad/
 Accept: application/json
+
+### ad list ?cat
+GET http://127.0.0.1:8000/ad/?cat=1
+Accept: application/json
+
+
+### ad list ?text
+GET http://127.0.0.1:8000/ad/?text=кот
+Accept: application/json
+
+### ad list ?location
+GET http://127.0.0.1:8000/ad/?location=Пушкин
+Accept: application/json
+
+### ad list ?price_from
+GET http://127.0.0.1:8000/ad/?price_from=2000
+Accept: application/json
+
+### ad list ?price_to
+GET http://127.0.0.1:8000/ad/?price_to=2000
+Accept: application/json
+
 
 ### ad detail
 GET http://127.0.0.1:8000/ad/1/
 Accept: application/json
 
 ### ad create
-POST http://127.0.0.1:8000/ad/create/
+POST http://127.0.0.1:8000/ad/
 Accept: application/json
 Content-Type: application/json
 
 {
-    "name": "test",
-    "author_id": 1,
-    "price": 2500,
-    "description": "test desc",
-    "category_id": 1,
-    "is_published": true
+   "author": 1,
+  "category": 1,
+  "name": "котята 29",
+  "price": 2900,
+  "description": "Продаю котят 29",
+  "is_published": true
 }
 
 
 ### ad update
-PATCH http://127.0.0.1:8000/ad/21/update/
+PATCH http://127.0.0.1:8000/ad/23/
 Accept: application/json
 Content-Type: application/json
 
 {
-    "name": "Сибирская котята 2.0",
-    "author_id": 1,
-    "author": "Павел",
-    "price": 2500,
-    "description": "Продаю сибирских котят, возвраст 3 месяца.\nОчень милые и ручные.\nЛоточек знают на пятерку, кушают премиум корм.\nЖдут любящих и заботливых хояев. Больше фотографий отправлю в личку, цена указана за 1 котенка.",
-    "is_published": true,
-    "category_id": 1,
-    "image": ""
+  "author": 2,
+  "category": 2,
+  "name": "котята 29.2",
+  "price": 2900,
+  "description": "Продаю котят 29.2",
+  "is_published": true
 }
 
 ### ad delete
-DELETE http://127.0.0.1:8000/ad/18/delete/
+DELETE http://127.0.0.1:8000/ad/23/
 
 
 ### user list
@@ -96,29 +115,63 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "username": "test",
-    "password": "gZvptL",
-    "first_name": "test Павел",
-    "last_name": "test Никифоров",
+    "username": "test29",
+    "password": "gZvptL29",
+    "first_name": "Павел29",
+    "last_name": "Никифоров29",
     "role": "member",
-    "age": 221,
-    "locations": ["Москва, м. Водный стадион"]
+    "age": 29,
+    "locations": [1]
 }
 
 ### user update
-PATCH http://127.0.0.1:8000/user/13/update/
+PATCH http://127.0.0.1:8000/user/16/update/
 Accept: application/json
 Content-Type: application/json
 
 {
-    "username": "test2",
-    "password": "gZvptL2",
-    "first_name": "test2 Павел",
-    "last_name": "test2 Никифоров",
+    "username": "test29",
+    "password": "gZvptL29.2",
+    "first_name": "Павел29.2",
+    "last_name": "Никифоров29.2",
     "role": "member",
-    "age": 22,
-    "locations": ["Москва, м. Водный стадион"]
+    "age": 29,
+    "locations": [2]
 }
 
 ### user delete
-DELETE http://127.0.0.1:8000/user/13/delete/
+DELETE http://127.0.0.1:8000/user/16/delete/
+
+
+
+### location list
+
+GET http://127.0.0.1:8000/location/
+Accept: application/json
+
+### location detail
+GET http://127.0.0.1:8000/location/1/
+Accept: application/json
+
+### location create
+POST http://127.0.0.1:8000/location/
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "test29",
+  "lat": "55.738429",
+  "lng": "37.548129"
+}
+
+### location update
+PATCH http://127.0.0.1:8000/location/16/
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "test 29.2"
+}
+
+### location delete
+DELETE http://127.0.0.1:8000/location/16/
