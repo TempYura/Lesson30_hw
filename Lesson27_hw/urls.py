@@ -19,19 +19,17 @@ from django.urls import path, include
 from django.conf import settings
 
 from ads.views.root import root
-from users.urls.location import location_router
-
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', root, name='root'),
     path('ad/', include('ads.urls.ad')),
+    path('selection/', include('ads.urls.selection')),
     path('category/', include('ads.urls.category')),
     path('user/', include('users.urls.user')),
+    path('location/', include('users.urls.location')),
 ]
-
-urlpatterns += location_router.urls
 
 
 if settings.DEBUG:

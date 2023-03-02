@@ -4,3 +4,5 @@ from users.views.location import LocationViewSet
 
 location_router = SimpleRouter()
 location_router.register('location', LocationViewSet)
+
+urlpatterns = location_router.urls

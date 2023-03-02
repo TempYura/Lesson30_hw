@@ -1,6 +1,7 @@
 from django.db.models import Count, Q
 from rest_framework.generics import CreateAPIView, RetrieveAPIView, DestroyAPIView, ListAPIView, UpdateAPIView
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.permissions import IsAuthenticated
 
 from users.models.user import User
 from users.serializers.user import UserSerializer, UserListSerializer, UserDetailSerializer, UserCreateSerializer
@@ -19,6 +20,7 @@ class UserListView(ListAPIView):
 class UserDetailView(RetrieveAPIView):
     serializer_class = UserDetailSerializer
     queryset = User.objects.all()
+    permission_classes = [IsAuthenticated]
 
 
 class UserCreateView(CreateAPIView):
