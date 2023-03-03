@@ -3,7 +3,7 @@ from rest_framework.serializers import ModelSerializer, SlugRelatedField
 
 from ads.models.ad import Ad
 from ads.models.category import Category
-from users.models.user import User
+from users.models import User
 
 
 class AdSerializer(ModelSerializer):

@@ -3,7 +3,7 @@ from rest_framework.generics import CreateAPIView, RetrieveAPIView, DestroyAPIVi
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 
-from users.models.user import User
+from users.models import User
 from users.serializers.user import UserSerializer, UserListSerializer, UserDetailSerializer, UserCreateSerializer
 
 

@@ -2,7 +2,7 @@ from rest_framework.relations import SlugRelatedField
 from rest_framework.serializers import ModelSerializer
 
 from ads.models.selection import Selection
-from users.models.user import User
+from users.models import User
 
 
 class SelectionSerializer(ModelSerializer):

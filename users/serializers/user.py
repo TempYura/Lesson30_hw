@@ -1,14 +1,15 @@
 from rest_framework.fields import IntegerField
-from rest_framework.serializers import ModelSerializer, SlugRelatedField, ManyRelatedField
+from rest_framework.serializers import ModelSerializer, SlugRelatedField
 
-from users.models.location import Location
-from users.models.user import User
+from users.models import Location
+from users.models import User
 
 
 class UserSerializer(ModelSerializer):
     class Meta:
         model = User
         exclude = ['password']
+
 
 class UserCreateSerializer(ModelSerializer):
     locations = SlugRelatedField(required=False, slug_field='name', many=True, queryset=Location.objects.all())
@@ -31,6 +32,8 @@ class UserCreateSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = "__all__"
+
+
 class UserListSerializer(ModelSerializer):
     total_ads = IntegerField()
 
