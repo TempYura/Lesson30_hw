@@ -7,8 +7,14 @@ class IsOwner(BasePermission):
     message = "Редактировать/удалять может только создатель подборки/объявления."
 
     def has_object_permission(self, request, view, obj):
-        if request.user == (obj.owner or obj.author):
-            return True
+        if hasattr(obj, "owner"):
+            if request.user == obj.owner:
+                return True
+            return False
+        if hasattr(obj, "author"):
+            if request.user == obj.author:
+                return True
+            return False
 
 
 class IsStaff(BasePermission):
